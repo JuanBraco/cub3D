@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 12:05:40 by jde-la-f          #+#    #+#             */
-/*   Updated: 2023/05/04 14:55:01 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:53:02 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,6 @@ void compute_drawing(t_env *env, int x)
 		}
 
 		// Compute the perpendicular distance to the wall
-		env->perp_wall_dist;
 		if (env->side == 0)
 			env->perp_wall_dist = (env->map_x - env->player_pos_x + (1 - env->step_x) / 2) / env->ray_dir_x;
 		else
@@ -154,7 +153,7 @@ void compute_drawing(t_env *env, int x)
       }
 
 		// Draw the wall slice on the screen
-		draw_line(&env, x, drawStart, drawEnd, env->color);
+		draw_line(env, x, drawStart, drawEnd, env->color);
 }
 
 void raycasting(t_env *env)
@@ -165,14 +164,14 @@ void raycasting(t_env *env)
     env->img.addr = mlx_get_data_addr(env->img.mlx_img, &env->img.bpp,
     &env->img.line_len, &env->img.endian);
 	
-	ft_init_rc(&env);
+	ft_init_rc(env);
 
 	// Loop over all the columns of the screen
 	int x = 0;
 	while (x < WIDTH)
 	{
-		calc_rc(&env, x);
-        compute_drawing(&env, x);
+		calc_rc(env, x);
+        compute_drawing(env, x);
 		x++;
 	}
 

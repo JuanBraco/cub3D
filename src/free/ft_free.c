@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adcarnec <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:17:23 by adcarnec          #+#    #+#             */
-/*   Updated: 2023/05/03 19:17:26 by adcarnec         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:51:20 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ft_free(t_env *env)
 			free(env->mlx);
 		if (env->map)
 			ft_freetab(env->map);
-		free(env);
 	}
 /* 	if (env->win)
 		mlx_clear_window(env->mlx, env->win);

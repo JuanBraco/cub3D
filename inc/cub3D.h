@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:22:01 by adcarnec          #+#    #+#             */
-/*   Updated: 2023/05/04 15:17:37 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:50:06 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void	ft_free(t_env *env);
 
 void    ft_init_rc(t_env *env);
 void	calc_rc(t_env *env, int x);
+void raycasting(t_env *env);
 
 /* DRAW.C */
 
