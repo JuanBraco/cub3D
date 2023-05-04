@@ -16,8 +16,11 @@ int	main(int ac, char **av)
 {
 	t_env		*env;
 
-	env = NULL;
+	env = malloc(sizeof(t_env));
+	if (!env)
+		return (perror("Error\n"), -1);
 	if (ft_init(env, ac, av) == -1)
 		return (-1);
+	ft_free(env);
 	return (0);
 }

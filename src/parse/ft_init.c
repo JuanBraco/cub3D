@@ -93,13 +93,9 @@ int	ft_init(t_env *env, int ac, char **av)
 	line = ft_load(ac, av);
 	if (!line)
 		return (-1);
-	env = malloc(sizeof(t_env));
-	if (!env)
-		return (perror("Error\n"), -1);
 	ft_init_mlx(env);
 	ft_init_map(env);
 	ft_init_tmpcolor(env);
 	ft_parse(env, line);
-	ft_free(env);
 	return (0);
 }
