@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_init(t_env *env, int ac, char **av)
+#include "cub3D.h"
+
+int	ft_init(t_env *env, int ac, char **av)
 {
 	(void)env; (void)ac; (void)av;
 	return(0);

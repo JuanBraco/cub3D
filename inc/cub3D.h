@@ -13,7 +13,11 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-typedef struct s_env t_env;
+# include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+
+typedef struct s_env	t_env;
 
 struct s_env {
 	void		*mlx;
@@ -49,6 +53,6 @@ struct s_env {
 	int			tmp_ww_b;
 };
 
-int ft_init(t_env *env, int ac, char **av);
+int	ft_init(t_env *env, int ac, char **av);
 
 #endif
