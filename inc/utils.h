@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adcarnec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,50 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef UTILS_H
+# define UTILS_H
 
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
 
-typedef struct s_env	t_env;
-
-struct s_env {
-	void		*mlx;
-	void		*win;
-	int			win_w;
-	int			win_h;
-	int			cell_size;
-	int			player_x;
-	int			player_y;
-	char		player_o;
-	char		**map;
-	int			ceil_r;
-	int			ceil_g;
-	int			ceil_b;
-	int			floor_r;
-	int			floor_g;
-	int			floor_b;
-	void		*wall_n_img;
-	void		*wall_s_img;
-	void		*wall_w_img;
-	void		*wall_e_img;
-	int			tmp_wn_r;
-	int			tmp_wn_g;
-	int			tmp_wn_b;
-	int			tmp_ws_r;
-	int			tmp_ws_g;
-	int			tmp_ws_b;
-	int			tmp_we_r;
-	int			tmp_we_g;
-	int			tmp_we_b;
-	int			tmp_ww_r;
-	int			tmp_ww_g;
-	int			tmp_ww_b;
-};
-
-int		ft_init(t_env *env, int ac, char **av);
-void	ft_free(t_env *env);
+int		ft_strlen(char *src);
+char	*ft_strdup(char *src);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_substr(char *src, int start, int end);
+int		ft_atoi(char *src);
+int		ft_tablen(char **tab);
+void	ft_freetab(char **tab);
+char	**ft_split(char *src, char sep);
 
 #endif
