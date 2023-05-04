@@ -6,7 +6,7 @@
 #    By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/29 12:35:36 by adcarnec          #+#    #+#              #
-#    Updated: 2023/05/04 15:45:14 by jde-la-f         ###   ########.fr        #
+#    Updated: 2023/05/04 16:33:52 by jde-la-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ FLAGS		=	-Wall -Wextra -Werror -g3
 SRC			=	./src/parse/ft_init.c ./src/parse/ft_parse.c ./src/parse/ft_checkmap.c\
 				./src/utils/ft_str.c ./src/utils/ft_tab.c ./src/utils/ft_split.c \
 				./src/free/ft_free.c ./src/main.c ./src/raycasting/draw.c \
-				./src/raycasting/init_rc.c
+				./src/raycasting/init_rc.c ./src/utils/ft_putstr_fd.c
 OBJ			=	$(SRC:.c=.o)
 INC_PATH	=	./inc/
 

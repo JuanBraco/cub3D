@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 12:05:40 by jde-la-f          #+#    #+#             */
-/*   Updated: 2023/05/04 15:53:02 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/04 17:30:59 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ int worldMap[24][24]=
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,3,0,3,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,3,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,3,0,3,0,0,0,1},
+  {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
+  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
+  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -39,6 +39,30 @@ int worldMap[24][24]=
   {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
+
+	/*if (map->p_dir == 'N')
+	{
+		map->plane_x = 0.66;
+		map->plane_y = 0;
+	}
+	if (map->p_dir == 'S')
+	{
+		map->plane_x = -0.66;
+		map->plane_y = 0;
+	}
+	if (map->p_dir == 'W')
+	{
+		map->plane_x = 0;
+		map->plane_y = 0.66;
+	}
+	if (map->p_dir == 'E')
+	{
+		map->plane_x = 0;
+		map->plane_y = -0.66;
+	}*/
+
+
+
 
 void    ft_init_rc(t_env *env)
 {
@@ -100,7 +124,7 @@ void calc_rc(t_env *env, int x)
     }
 }
 
-void compute_drawing(t_env *env, int x)
+void compute_drawing(t_env *env)
 {
     // Perform the DDA algorithm to find the closest wall hit by the ray
 		env->hit = 0;
@@ -133,33 +157,56 @@ void compute_drawing(t_env *env, int x)
 			env->perp_wall_dist = (env->map_y - env->player_pos_y + (1 - env->step_y) / 2) / env->ray_dir_y;
 
 		// Compute the height of the wall slice on the screen
-		int lineHeight = (int)(HEIGHT / env->perp_wall_dist);
+		env->line_height = (int)(HEIGHT / env->perp_wall_dist);
 
 		// Compute the starting and ending positions of the wall slice on the screen
-		int drawStart = -lineHeight / 2 + HEIGHT / 2;
-		if (drawStart < 0)
-			drawStart = 0;
-		int drawEnd = lineHeight / 2 + HEIGHT / 2;
-		if (drawEnd >= HEIGHT)
-			drawEnd = HEIGHT - 1;
+		env->draw_start = -env->line_height / 2 + HEIGHT / 2;
+		if (env->draw_start < 0)
+			env->draw_start = 0;
+	    env->draw_end = env->line_height / 2 + HEIGHT / 2;
+		if (env->draw_end >= HEIGHT)
+			env->draw_end = HEIGHT - 1;
 
       switch(worldMap[env->map_x][env->map_y])
       {
         case 1:  env->color = 0x00880000;    break; //red
         case 2:  env->color = 0x00006600;  break; //green
-        case 3:  env->color = 0x00006600;   break; //blue
+        case 3:  env->color = 0x00000055;   break; //blue
         case 4:  env->color = 0x00FFFFFF;  break; //white
         default: env->color = 0x0000FFFF; break; //yellow
       }
+}
 
-		// Draw the wall slice on the screen
-		draw_line(env, x, drawStart, drawEnd, env->color);
+int	close_game(t_env *env)
+{
+    mlx_destroy_image(env->mlx, env->img.mlx_img);
+	mlx_destroy_window(env->mlx, env->mlx_win);
+	mlx_destroy_display(env->mlx);
+	free(env->mlx);
+	exit (0);
+}
+
+
+void	game_error(t_env *env, char *message)
+{
+	ft_putstr_fd(message, 2);
+	mlx_destroy_image(env->mlx, env->img.mlx_img);
+	if (env->mlx_win)
+		mlx_destroy_window(env->mlx, env->mlx_win);
+	if (env->mlx)
+		mlx_destroy_display(env->mlx);
+	free(env->mlx);
+	exit (EXIT_FAILURE);
 }
 
 void raycasting(t_env *env)
 {
     env->mlx = mlx_init();
+    if (!env->mlx)
+		game_error(env, "Error\nInitialisation of display has failed\n");
     env->mlx_win = mlx_new_window(env->mlx, WIDTH, HEIGHT, "cub3d");
+    if (!env->mlx_win)
+		game_error(env, "Error\nInitialisation of window has failed\n");
     env->img.mlx_img = mlx_new_image(env->mlx, WIDTH, HEIGHT);
     env->img.addr = mlx_get_data_addr(env->img.mlx_img, &env->img.bpp,
     &env->img.line_len, &env->img.endian);
@@ -171,12 +218,12 @@ void raycasting(t_env *env)
 	while (x < WIDTH)
 	{
 		calc_rc(env, x);
-        compute_drawing(env, x);
+        compute_drawing(env);
+        draw_column_slice(env, x, env->draw_start, env->draw_end, env->color);
 		x++;
 	}
-
-	//my_mlx_pixel_put(&env, 5, 5, 0x00FF0000);
 	mlx_put_image_to_window(env->mlx, env->mlx_win, env->img.mlx_img,
 			0, 0);
+    mlx_hook(env->mlx_win, 17, 1L << 0, close_game, env);
 	mlx_loop(env->mlx);
 }
