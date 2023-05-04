@@ -45,13 +45,14 @@ int	ft_checkmap(t_env *env)
 	int		j;
 	int		n;
 
-	i= -1;
+	i = -1;
 	n = 0;
 	while (env->map[++i])
 	{
 		printf("%s\n", env->map[i]);
 		j = -1;
-		while (env->map[i][++j]){
+		while (env->map[i][++j])
+		{
 			if (env->map[i][j] == 'N' || env->map[i][j] == 'S' \
 			|| env->map[i][j] == 'W' || env->map[i][j] == 'E' )
 			{

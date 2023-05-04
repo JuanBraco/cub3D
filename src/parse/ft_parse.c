@@ -16,8 +16,7 @@
 
 static int	ft_elemsset(t_env *env)
 {
-	printf("env->ceilcolor %x env->floorcolor  %x\n", env->ceilcolor, env->floorcolor);
-	if (env->ceilcolor != -1 && env->floorcolor  != -1) // TODO check paths to texture
+	if (env->ceilcolor != -1 && env->floorcolor != -1) // TODO check paths to texture
 		return (0);
 	else
 		return (-1);
@@ -61,13 +60,13 @@ static int	ft_getmap(t_env *env, char **tmp)
 	if (!env->map)
 		return (perror("Error\n"), -1);
 	i = -1;
-	while (tmp[++i]){
+	while (tmp[++i])
 		if (env->win_w < ft_strlen(tmp[i]))
 			env->win_w = ft_strlen(tmp[i]);
-	}
 	env->win_h = i;
 	i = -1;
-	while (tmp[++i]){
+	while (tmp[++i])
+	{
 		env->map[i] = malloc(sizeof(char) * (env->win_w + 1));
 		if (!env->map[i])
 			return (perror("Error\n"), -1);
@@ -92,7 +91,7 @@ int	ft_parse(t_env *env, char **tmp)
 	i = -1;
 	while (tmp[++i] && nelem < 6)
 	{
-		if (ft_strlen(tmp[i]) > 0)  // TODO trim
+		if (ft_strlen(tmp[i]) > 0) // TODO trim
 		{
 			if (tmp[i][0] == 'N' || tmp[i][0] == 'S' || tmp[i][0] == 'W' || \
 			tmp[i][0] == 'E' )

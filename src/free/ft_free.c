@@ -14,14 +14,6 @@
 #include "utils.h"
 //#include "mlx.h"
 
-void	ft_free(t_env *env)
-{
-	if (env){
-		if (env->mlx)
-			free(env->mlx);
-		if (env->map)
-			ft_freetab(env->map);
-	}
 /* 	if (env->win)
 		mlx_clear_window(env->mlx, env->win);
 	if (env->wall_n_img)
@@ -34,4 +26,12 @@ void	ft_free(t_env *env)
 		mlx_destroy_image(env->mlx, env->wall_e_img);
 	if (env->mlx)
 		mlx_destroy_display(env->mlx); */
+void	ft_free(t_env *env)
+{
+	if (env){
+		if (env->mlx)
+			free(env->mlx);
+		if (env->map)
+			ft_freetab(env->map);
+	}
 }
