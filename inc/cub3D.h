@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:22:01 by adcarnec          #+#    #+#             */
-/*   Updated: 2023/05/04 15:50:06 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:35:15 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <mlx.h>
 # include <math.h>
 # include <limits.h>
+# include "utils.h"
 
 # define WIDTH (640)
 # define HEIGHT (480)
@@ -70,7 +71,7 @@ struct s_env {
 	double			player_pos_x;
 	double			player_pos_y;
 	double			dir_x;
-	double			dir_y;
+	double			dir_y;      
 	double			plane_x;
 	double			plane_y;
 	double			camera_x;
@@ -89,6 +90,9 @@ struct s_env {
 	double			perp_wall_dist;
 
 	int				color;
+	int				draw_start;
+	int				draw_end;
+	int				line_height;
 };
 
 int		ft_init(t_env *env, int ac, char **av);
@@ -98,11 +102,11 @@ void	ft_free(t_env *env);
 
 void    ft_init_rc(t_env *env);
 void	calc_rc(t_env *env, int x);
-void raycasting(t_env *env);
+void 	raycasting(t_env *env);
 
 /* DRAW.C */
 
 void	my_mlx_pixel_put(t_env *env, int x, int y, int color);
-void	draw_line(t_env *env, int x, int drawStart, int drawEnd, int color);
+void	draw_column_slice(t_env *env, int x, int drawStart, int drawEnd, int color);
 
 #endif

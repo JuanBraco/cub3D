@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 12:08:34 by jde-la-f          #+#    #+#             */
-/*   Updated: 2023/05/04 12:41:24 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:09:45 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	my_mlx_pixel_put(t_env *env, int x, int y, int color)
 	*(int *)pixel = color;
 }
 
-void	draw_line(t_env *env, int x, int drawStart, int drawEnd, int color)
+void	draw_column_slice(t_env *env, int x, int drawStart, int drawEnd, int color)
 {
 	int tmp = 0;
 	
