@@ -21,12 +21,12 @@ static void	ft_init_mlx(t_env *env)
 	env->win_w = 0;
 	env->win_h = 0;
 	env->cell_size = 32;
-	env->ceil_r = 133;
-	env->ceil_g = 193;
-	env->ceil_b = 233;
-	env->floor_r = 126;
-	env->floor_g = 81;
-	env->floor_b = 9;
+	env->ceil_r = -1;
+	env->ceil_g = -1;
+	env->ceil_b = -1;
+	env->floor_r = -1;
+	env->floor_g = -1;
+	env->floor_b = -1;
 	env->wall_n_img = NULL;
 	env->wall_s_img = NULL;
 	env->wall_w_img = NULL;
@@ -96,6 +96,7 @@ int	ft_init(t_env *env, int ac, char **av)
 	ft_init_mlx(env);
 	ft_init_map(env);
 	ft_init_tmpcolor(env);
-	ft_parse(env, line);
-	return (0);
+	if (ft_parse(env, ft_split(line, '\n')) == -1)
+		return (free(line), -1);
+	return (free(line), 0);
 }

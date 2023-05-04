@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.h                                            :+:      :+:    :+:   */
+/*   ft_checkmap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adcarnec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/03 19:22:01 by adcarnec          #+#    #+#             */
-/*   Updated: 2023/05/03 19:22:04 by adcarnec         ###   ########.fr       */
+/*   Created: 2023/05/03 19:17:23 by adcarnec          #+#    #+#             */
+/*   Updated: 2023/05/03 19:17:26 by adcarnec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSE_H
-# define PARSE_H
+#include "cub3D.h"
+#include "parse.h"
+#include "utils.h"
 
-# include <sys/stat.h>
-# include <fcntl.h>
-
-# define BUFFER_SIZE 1024
-
-int	ft_parse(t_env *env, char **tmp);
-int	ft_checkmap(t_env *env);
-
-#endif
+int	ft_checkmap(t_env *env)
+{
+	printf("ceiling r %i g %i b %i\n", env->ceil_r, env->ceil_g, env->ceil_b);
+	printf("floor r %i g %i b %i\n", env->floor_r, env->floor_g, env->floor_b);
+	printf("map len %i\n", ft_tablen(env->map));
+	return (0);
+}

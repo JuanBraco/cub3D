@@ -13,9 +13,9 @@
 NAME		=	cub3D
 CC			=	cc
 FLAGS		=	-Wall -Wextra -Werror
-SRC			=	./src/parse/ft_init.c ./src/parse/ft_parse.c ./src/main.c \
+SRC			=	./src/parse/ft_init.c ./src/parse/ft_parse.c ./src/parse/ft_checkmap.c\
 				./src/utils/ft_str.c ./src/utils/ft_tab.c ./src/utils/ft_split.c \
-				./src/free/ft_free.c
+				./src/free/ft_free.c ./src/main.c 
 OBJ			=	$(SRC:.c=.o)
 INC_PATH	=	./inc/
 
