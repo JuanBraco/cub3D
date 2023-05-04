@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:22:01 by adcarnec          #+#    #+#             */
-/*   Updated: 2023/05/04 16:35:15 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/04 17:43:33 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ struct s_env {
 	void		*mlx_win;
 	t_img		img;
 	
-	int			win_w;
-	int			win_h;
+	int			map_w;
+	int			map_h;
 	int			cell_size;
 	char		**map;
 	char		player_o;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adcarnec <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:17:23 by adcarnec          #+#    #+#             */
-/*   Updated: 2023/05/03 19:17:26 by adcarnec         ###   ########.fr       */
+/*   Updated: 2023/05/04 17:43:33 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,19 @@ static int	ft_getmap(t_env *env, char **tmp)
 		return (perror("Error\n"), -1);
 	i = -1;
 	while (tmp[++i])
-		if (env->win_w < ft_strlen(tmp[i]))
-			env->win_w = ft_strlen(tmp[i]);
-	env->win_h = i;
+		if (env->map_w < ft_strlen(tmp[i]))
+			env->map_w = ft_strlen(tmp[i]);
+	env->map_h = i;
 	i = -1;
 	while (tmp[++i])
 	{
-		env->map[i] = malloc(sizeof(char) * (env->win_w + 1));
+		env->map[i] = malloc(sizeof(char) * (env->map_w + 1));
 		if (!env->map[i])
 			return (perror("Error\n"), -1);
 		j = -1;
 		while (tmp[i][++j])
 			env->map[i][j] = tmp[i][j];
-		while (j < env->win_w)
+		while (j < env->map_w)
 			env->map[i][j++] = '0';
 		env->map[i][j] = 0;
 	}

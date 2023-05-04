@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 12:05:40 by jde-la-f          #+#    #+#             */
-/*   Updated: 2023/05/04 17:30:59 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/04 17:48:42 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ int worldMap[24][24]=
 
 void    ft_init_rc(t_env *env)
 {
-    env->player_pos_x = 22;
-    env->player_pos_y = 12;  //x and y start position
-    env->dir_x = -1;
-    env->dir_y = 0; //initial direction vector
+    //env->player_pos_x = 22;
+    //env->player_pos_y = 12;  //x and y start position
+    //env->dir_x = -1;
+    //env->dir_y = 0; //initial direction vector
     env->plane_x = 0;
     env->plane_y = 0.66; //the 2d raycaster version of camera plane
 
@@ -146,7 +146,7 @@ void compute_drawing(t_env *env)
 			}
 
 			// Check if the current cell contains a wall
-			if (worldMap[env->map_x][env->map_y] > 0)
+			if (env->map[env->map_x][env->map_y] == '1')
 				env->hit = 1;
 		}
 
@@ -167,14 +167,15 @@ void compute_drawing(t_env *env)
 		if (env->draw_end >= HEIGHT)
 			env->draw_end = HEIGHT - 1;
 
-      switch(worldMap[env->map_x][env->map_y])
+        env->color = 0x00880000;
+      /*switch(env->map[env->map_x][env->map_y])
       {
         case 1:  env->color = 0x00880000;    break; //red
         case 2:  env->color = 0x00006600;  break; //green
         case 3:  env->color = 0x00000055;   break; //blue
         case 4:  env->color = 0x00FFFFFF;  break; //white
         default: env->color = 0x0000FFFF; break; //yellow
-      }
+      }*/
 }
 
 int	close_game(t_env *env)
@@ -183,6 +184,8 @@ int	close_game(t_env *env)
 	mlx_destroy_window(env->mlx, env->mlx_win);
 	mlx_destroy_display(env->mlx);
 	free(env->mlx);
+    if (env->map)
+			ft_freetab(env->map);
 	exit (0);
 }
 

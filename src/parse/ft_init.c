@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:17:23 by adcarnec          #+#    #+#             */
-/*   Updated: 2023/05/04 15:13:46 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/04 17:43:33 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static void	ft_init_env(t_env *env)
 {
 	env->mlx = NULL;
 	env->mlx_win = NULL;
-	env->win_w = 0;
-	env->win_h = 0;
+	env->map_w = 0;
+	env->map_h = 0;
 	env->cell_size = 32;
 	env->ceilcolor = -1;
 	env->floorcolor = -1;
