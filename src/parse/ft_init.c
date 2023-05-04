@@ -14,47 +14,29 @@
 #include "parse.h"
 #include "utils.h"
 
-static void	ft_init_mlx(t_env *env)
+static void	ft_init_env(t_env *env)
 {
 	env->mlx = NULL;
 	env->mlx_win = NULL;
 	env->win_w = 0;
 	env->win_h = 0;
 	env->cell_size = 32;
-	env->ceil_r = -1;
-	env->ceil_g = -1;
-	env->ceil_b = -1;
-	env->floor_r = -1;
-	env->floor_g = -1;
-	env->floor_b = -1;
+	env->ceilcolor = -1;
+	env->floorcolor = -1;
 	env->wall_n_img = NULL;
 	env->wall_s_img = NULL;
 	env->wall_w_img = NULL;
 	env->wall_e_img = NULL;
-}
-
-static void	ft_init_map(t_env *env)
-{
+	env->map = NULL;
+	env->player_o = 'X';
 	env->player_pos_x = 0;
 	env->player_pos_y = 0;
-	env->player_o = 'N';
-	env->map = NULL;
-}
-
-static void	ft_init_tmpcolor(t_env *env)
-{
-	env->tmp_wn_r = 179;
-	env->tmp_wn_g = 182;
-	env->tmp_wn_b = 183;
-	env->tmp_ws_r = 97;
-	env->tmp_ws_g = 106;
-	env->tmp_ws_b = 107;
-	env->tmp_we_r = 144;
-	env->tmp_we_g = 148;
-	env->tmp_we_b = 151;
-	env->tmp_ww_r = 113;
-	env->tmp_ww_g = 125;
-	env->tmp_ww_b = 126;
+	env->dir_x = 0;
+	env->dir_y = 0;
+	env->tmp_wn_color = 0x00B3B6B7 ;
+	env->tmp_ws_color = 0x00616A6B;
+	env->tmp_we_color = 0x00909497;
+	env->tmp_ww_color = 0x00717D7E;
 }
 
 static char	*ft_load(int ac, char **av)
@@ -90,9 +72,7 @@ int	ft_init(t_env *env, int ac, char **av)
 {
 	char	*line;
 
-	ft_init_mlx(env);
-	ft_init_map(env);
-	ft_init_tmpcolor(env);
+	ft_init_env(env);
 	line = ft_load(ac, av);
 	if (!line)
 		return (-1);

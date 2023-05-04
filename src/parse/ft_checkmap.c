@@ -14,20 +14,37 @@
 #include "parse.h"
 #include "utils.h"
 
-/*
-	double			player_pos_x;
-	double			player_pos_y;
-	char		player_o;
-*/
+void	ft_setorientation(t_env *env, char o)
+{
+	env->player_o = o;
+	if (o == 'N')
+	{
+		env->dir_x = 0;
+		env->dir_y = -1;
+	}
+	else if (o == 'S')
+	{
+		env->dir_x = 0;
+		env->dir_y = 1;
+	}
+	else if (o == 'E')
+	{
+		env->dir_x = 1;
+		env->dir_y = 0;
+	}
+	else if (o == 'W')
+	{
+		env->dir_x = -1;
+		env->dir_y = 0;
+	}
+}
+
 int	ft_checkmap(t_env *env)
 {
 	int		i;
 	int		j;
 	int		n;
 
-	printf("win h %i w %i\n", env->win_h, env->win_w);
-	printf("ceiling r %i g %i b %i\n", env->ceil_r, env->ceil_g, env->ceil_b);
-	printf("floor r %i g %i b %i\n", env->floor_r, env->floor_g, env->floor_b);
 	i= -1;
 	n = 0;
 	while (env->map[++i])
@@ -40,7 +57,7 @@ int	ft_checkmap(t_env *env)
 			{
 				env->player_pos_x = j;
 				env->player_pos_y = i;
-				env->player_o = env->map[i][j];
+				ft_setorientation(env, env->map[i][j]);
 				n++;
 			}
 		}
