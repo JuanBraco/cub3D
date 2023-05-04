@@ -12,7 +12,7 @@
 
 NAME		=	cub3D
 CC			=	cc
-FLAGS		=	-Wall -Wextra -Werror
+FLAGS		=	-Wall -Wextra -Werror -g3
 SRC			=	./src/parse/ft_init.c ./src/parse/ft_parse.c ./src/parse/ft_checkmap.c\
 				./src/utils/ft_str.c ./src/utils/ft_tab.c ./src/utils/ft_split.c \
 				./src/free/ft_free.c ./src/main.c 

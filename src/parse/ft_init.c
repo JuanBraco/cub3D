@@ -90,12 +90,12 @@ int	ft_init(t_env *env, int ac, char **av)
 {
 	char	*line;
 
-	line = ft_load(ac, av);
-	if (!line)
-		return (-1);
 	ft_init_mlx(env);
 	ft_init_map(env);
 	ft_init_tmpcolor(env);
+	line = ft_load(ac, av);
+	if (!line)
+		return (-1);
 	if (ft_parse(env, ft_split(line, '\n')) == -1)
 		return (free(line), -1);
 	return (free(line), 0);

@@ -59,18 +59,30 @@ static void	ft_getcolor(t_env *env, char *line, int *nelem)
 static int	ft_getmap(t_env *env, char **tmp)
 {
 	int		i;
+	int		j;
 
 	env->map = malloc(sizeof(char *) * (ft_tablen(tmp) + 1));
 	if (!env->map)
 		return (perror("Error\n"), -1);
 	i = -1;
 	while (tmp[++i]){
-		env->map[i] = ft_strdup(tmp[i]);
+		if (env->win_w < ft_strlen(tmp[i]))
+			env->win_w = ft_strlen(tmp[i]);
+	}
+	env->win_h = i;
+	i = -1;
+	while (tmp[++i]){
+		env->map[i] = malloc(sizeof(char) * (env->win_w + 1));
 		if (!env->map[i])
 			return (perror("Error\n"), -1);
+		j = -1;
+		while (tmp[i][++j])
+			env->map[i][j] = tmp[i][j];
+		while (j < env->win_w)
+			env->map[i][j++] = '0';
+		env->map[i][j] = 0;
 	}
-	env->map[i] = NULL;
-	return (0);
+	return (env->map[i] = NULL, 0);
 }
 
 int	ft_parse(t_env *env, char **tmp)
@@ -94,8 +106,9 @@ int	ft_parse(t_env *env, char **tmp)
 		}
 	}
 	if (ft_elemsset(env) == -1)
-		return (printf("Error\n Missing element definition\n"), 
-			ft_freetab(tmp), -1);
+		return (printf("Error\n Missing element\n"), ft_freetab(tmp), -1);
+	while (ft_strlen(tmp[i]) <= 1)
+		i++;
 	if (ft_getmap(env, &tmp[i]) == -1)
 		return (ft_freetab(tmp), -1);
 	return (ft_checkmap(env), ft_freetab(tmp), 0);
