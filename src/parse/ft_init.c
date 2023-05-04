@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adcarnec <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:17:23 by adcarnec          #+#    #+#             */
-/*   Updated: 2023/05/03 19:17:26 by adcarnec         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:13:46 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 static void	ft_init_mlx(t_env *env)
 {
 	env->mlx = NULL;
-	env->win = NULL;
+	env->mlx_win = NULL;
 	env->win_w = 0;
 	env->win_h = 0;
 	env->cell_size = 32;
@@ -35,8 +35,8 @@ static void	ft_init_mlx(t_env *env)
 
 static void	ft_init_map(t_env *env)
 {
-	env->player_x = 0;
-	env->player_y = 0;
+	env->player_pos_x = 0;
+	env->player_pos_y = 0;
 	env->player_o = 'N';
 	env->map = NULL;
 }

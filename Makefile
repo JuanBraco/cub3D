@@ -6,7 +6,7 @@
 #    By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/29 12:35:36 by adcarnec          #+#    #+#              #
-#    Updated: 2023/05/04 09:12:23 by jde-la-f         ###   ########.fr        #
+#    Updated: 2023/05/04 15:03:07 by jde-la-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ INC_PATH	=	./inc/
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(FLAGS) -I$(INC_PATH) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME) $(OBJ)
+	$(CC) $(FLAGS) -I$(INC_PATH) $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 %.o: %.c
 	$(CC) $(FLAGS) -I$(INC_PATH) -Imlx_linux -O3 -o $@ -c $<

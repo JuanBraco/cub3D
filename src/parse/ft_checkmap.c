@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_checkmap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adcarnec <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:17:23 by adcarnec          #+#    #+#             */
-/*   Updated: 2023/05/03 19:17:26 by adcarnec         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:13:41 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 #include "utils.h"
 
 /*
-	int			player_x;
-	int			player_y;
+	double			player_pos_x;
+	double			player_pos_y;
 	char		player_o;
 */
 int	ft_checkmap(t_env *env)
@@ -38,8 +38,8 @@ int	ft_checkmap(t_env *env)
 			if (env->map[i][j] == 'N' || env->map[i][j] == 'S' \
 			|| env->map[i][j] == 'W' || env->map[i][j] == 'E' )
 			{
-				env->player_x = j;
-				env->player_y = i;
+				env->player_pos_x = j;
+				env->player_pos_y = i;
 				env->player_o = env->map[i][j];
 				n++;
 			}
