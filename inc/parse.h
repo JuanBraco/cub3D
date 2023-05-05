@@ -16,7 +16,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-# define BUFFER_SIZE 1024
+# define BUFFER_SIZE 2048
 
 int	ft_parse(t_env *env, char **tmp);
 int	ft_checkmap(t_env *env);

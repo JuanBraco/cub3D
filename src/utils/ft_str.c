@@ -73,7 +73,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (++j < len_s2)
 		dest[i + j] = s2[j];
 	dest[i + j] = '\0';
-	return (dest);
+	return (free(s1), dest);
 }
 
 int	ft_atoi(char *src)
