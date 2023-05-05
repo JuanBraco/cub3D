@@ -106,5 +106,7 @@ int	ft_parse(t_env *env, char **tmp)
 		i++;
 	if (ft_getmap(env, &tmp[i]) == -1)
 		return (ft_freetab(tmp), -1);
-	return (ft_checkmap(env), ft_freetab(tmp), 0);
+	if (ft_checkmap(env) == -1)
+		return (ft_freetab(tmp), -1);
+	return (ft_freetab(tmp), 0);
 }
