@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adcarnec <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:22:01 by adcarnec          #+#    #+#             */
-/*   Updated: 2023/05/03 19:22:04 by adcarnec         ###   ########.fr       */
+/*   Updated: 2023/05/05 11:27:04 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
 
-# include <sys/stat.h>
 # include <fcntl.h>
+# include <sys/stat.h>
 
 # define BUFFER_SIZE 2048
 

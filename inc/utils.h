@@ -6,15 +6,15 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:22:01 by adcarnec          #+#    #+#             */
-/*   Updated: 2023/05/04 16:34:22 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/05 11:27:07 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
-# include <stdlib.h>
 # include <stdio.h>
+# include <stdlib.h>
 # include <unistd.h>
 
 int		ft_strlen(char *src);
