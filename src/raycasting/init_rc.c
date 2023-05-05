@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 12:05:40 by jde-la-f          #+#    #+#             */
-/*   Updated: 2023/05/05 16:04:12 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/05 16:41:18 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,23 +59,12 @@ static void	find_wall_hit(t_env *env)
 		if (env->map[env->map_x][env->map_y] == '1')
 			env->hit = 1;
 	}
-}
-
-static void	compute_drawing_value(t_env *env)
-{
-	if (env->side == 0)
-		env->perp_wall_dist = (env->map_x - env->player_pos_x + (1
+		if (env->side == 0)
+	env->perp_wall_dist = (env->map_x - env->player_pos_x + (1
 					- env->step_x) / 2) / env->ray_dir_x;
 	else
 		env->perp_wall_dist = (env->map_y - env->player_pos_y + (1
 					- env->step_y) / 2) / env->ray_dir_y;
-	env->line_height = (int)(HEIGHT / env->perp_wall_dist);
-	env->draw_start = -env->line_height / 2 + HEIGHT / 2;
-	if (env->draw_start < 0)
-		env->draw_start = 0;
-	env->draw_end = env->line_height / 2 + HEIGHT / 2;
-	if (env->draw_end >= HEIGHT)
-		env->draw_end = HEIGHT - 1;
 }
 
 int	render(t_env *env)
@@ -107,7 +96,6 @@ int	raycasting(t_env *env)
 			env->delta_dist_y = fabs(1 / env->ray_dir_y);
 		calc_delta(env);
 		find_wall_hit(env);
-		compute_drawing_value(env);
 		draw_column_slice(env, x);
 		x++;
 	}

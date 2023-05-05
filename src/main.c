@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:17:23 by adcarnec          #+#    #+#             */
-/*   Updated: 2023/05/05 15:53:13 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/05 16:27:49 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	launch_game(t_env *env)
 			graphic_error(env, "Error : Path texture is incorrect\n");
 		env->img[i].addr = mlx_get_data_addr(env->img[i].mlx_img,
 				&env->img[i].bpp, &env->img[i].line_len, &env->img[i].endian);
+		printf("height : %i",env->img[i].width);
 		i++;
 	}
 	mlx_loop_hook(env->mlx, &render, env);

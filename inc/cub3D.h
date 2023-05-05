@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:22:01 by adcarnec          #+#    #+#             */
-/*   Updated: 2023/05/05 12:07:14 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/05 16:54:04 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,12 @@ struct					s_env
 	int					line_height;
 	double				move_speed;
 	double				cam_speed;
+	int					texture_img;
+	double				wall_height;
+	double				incr;
+	double				tex_pos;
+	int					tex_x;
+	int					tex_y;
 };
 
 int						ft_init(t_env *env, int ac, char **av);
