@@ -93,7 +93,6 @@ int	ft_checkwall(t_env *env)
 	ft_fill(env, map, env->player_pos_y, env->player_pos_x);
 	while (ft_nblank(map, &start_x, &start_y) > 0)
 		ft_fill(env, map, start_x, start_y);
-	ft_printtab(map);
 	if (ft_isclosed(map, env->map_w, env->map_h) == -1)
 		return (printf("Error\nMap is not closed\n"), ft_freetab(map), -1);
 	return (ft_freetab(map), 0);

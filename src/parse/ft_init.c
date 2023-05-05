@@ -48,7 +48,7 @@ static char	*ft_load(int ac, char **av)
 
 	line = NULL;
 	if (ac != 2)
-		return (printf("Error\n Usage: ./cub3D <filename>\n"), line);
+		return (printf("Error\nUsage: ./cub3D <filename>\n"), line);
 	// TODO: check filename extension & access
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
