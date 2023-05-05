@@ -25,6 +25,7 @@ int		ft_atoi(char *src);
 int		ft_tablen(char **tab);
 void	ft_freetab(char **tab);
 char	**ft_tabdup(char **tab);
+void	ft_printtab(char **tab);
 char	**ft_split(char *src, char sep);
 void	ft_putstr_fd(char *s, int fd);
 

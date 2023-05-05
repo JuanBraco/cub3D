@@ -53,9 +53,26 @@ char	**ft_tabdup(char **tab)
 		{
 			i = -1;
 			while (tab[++i])
-				copy[i] = tab[i];
+			{
+				copy[i] = ft_strdup(tab[i]);
+				if (!copy[i])
+					return (ft_freetab(copy), NULL);
+			}
 			copy[i] = NULL;
 		}
 	}
 	return (copy);
+}
+
+void	ft_printtab(char **tab)
+{
+	int	i;
+
+	i = -1;
+	if (tab && *tab)
+	{
+		printf("\n");
+		while (tab[++i])
+			printf("%s\n", tab[i]);
+	}
 }

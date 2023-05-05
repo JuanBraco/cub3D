@@ -47,18 +47,6 @@ void	ft_setorientation(t_env *env, char o)
 	}
 }
 
-int	ft_checkwall(t_env *env)
-{
-	char	**map;
-	int		i;
-	int		j;
-
-	i = env->player_pos_y;
-	j = env->player_pos_x;
-	map = ft_tabdup(env->map);
-	return (0);
-}
-
 int	ft_checkmap(t_env *env)
 {
 	int		i;
@@ -85,5 +73,5 @@ int	ft_checkmap(t_env *env)
 	}
 	if (n != 1)
 		return (printf("Error\n Invalid player's position\n"), -1);
-	return (0);
+	return (ft_checkwall(env));
 }
