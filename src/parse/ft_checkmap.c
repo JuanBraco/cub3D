@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:17:23 by adcarnec          #+#    #+#             */
-/*   Updated: 2023/05/05 08:28:55 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/05 08:37:51 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,31 @@ void	ft_setorientation(t_env *env, char o)
 	env->player_o = o;
 	if (o == 'N')
 	{
-		env->dir_x = 0;
-		env->dir_y = -1;
+		env->dir_x = -1;
+		env->dir_y = 0;
+		env->plane_x = 0;
+    	env->plane_y = 0.66;
 	}
 	else if (o == 'S')
 	{
-		env->dir_x = 0;
-		env->dir_y = 1;
+		env->dir_x = 1;
+		env->dir_y = 0;
+		env->plane_x = 0;
+    	env->plane_y = -0.66;
 	}
 	else if (o == 'E')
 	{
-		env->dir_x = 1;
-		env->dir_y = 0;
+		env->dir_x = 0;
+		env->dir_y = 1;
+		env->plane_x = 0.66;
+    	env->plane_y = 0;
 	}
 	else if (o == 'W')
 	{
-		env->dir_x = -1;
-		env->dir_y = 0;
+		env->dir_x = 0;
+		env->dir_y = -1;
+		env->plane_x = -0.66;
+    	env->plane_y = 0;
 	}
 }
 

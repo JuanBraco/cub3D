@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:22:01 by adcarnec          #+#    #+#             */
-/*   Updated: 2023/05/04 17:43:33 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/05 10:05:15 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,17 @@
 # include <limits.h>
 # include "utils.h"
 
-# define WIDTH (640)
-# define HEIGHT (480)
+# define KEY_ESC		65307
+# define KEY_W			119
+# define KEY_A			97
+# define KEY_S			115
+# define KEY_D			100
+
+# define KEY_L			65361
+# define KEY_R			65363
+
+# define WIDTH (1940)
+# define HEIGHT (1280)
 
 typedef struct s_img
 {
@@ -81,6 +90,8 @@ struct s_env {
 	int				draw_start;
 	int				draw_end;
 	int				line_height;
+	double			move_speed;
+	double			cam_speed;
 };
 
 int		ft_init(t_env *env, int ac, char **av);
@@ -88,13 +99,17 @@ void	ft_free(t_env *env);
 
 /* RAYCASTING */
 
-void    ft_init_rc(t_env *env);
 void	calc_rc(t_env *env, int x);
-void 	raycasting(t_env *env);
+int raycasting(t_env *env);
+int	render(t_env *env);
+int	close_game(t_env *env);
+void	graphic_error(t_env *env, char *message);
 
 /* DRAW.C */
 
 void	my_mlx_pixel_put(t_env *env, int x, int y, int color);
 void	draw_column_slice(t_env *env, int x, int drawStart, int drawEnd, int color);
+
+int	key_hook(int key, t_env *env);
 
 #endif
