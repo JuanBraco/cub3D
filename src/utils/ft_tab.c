@@ -39,3 +39,23 @@ int	ft_tablen(char **tab)
 	}
 	return (len);
 }
+
+char	**ft_tabdup(char **tab)
+{
+	char	**copy;
+	int		i;
+
+	copy = NULL;
+	if (tab && *tab)
+	{
+		copy = malloc(sizeof(char *) * (ft_tablen(tab) + 1));
+		if (copy)	
+		{
+			i = -1;
+			while (tab[++i])
+				copy[i] = tab[i];
+			copy[i] = NULL;
+		}
+	}
+	return (copy);
+}

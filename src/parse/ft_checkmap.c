@@ -39,6 +39,18 @@ void	ft_setorientation(t_env *env, char o)
 	}
 }
 
+int	ft_checkwall(t_env *env)
+{
+	char	**map;
+	int		i;
+	int		j;
+
+	i = env->player_pos_y;
+	j = env->player_pos_x;
+	map = ft_tabdup(env->map);
+	return (0);
+}
+
 int	ft_checkmap(t_env *env)
 {
 	int		i;
@@ -56,8 +68,8 @@ int	ft_checkmap(t_env *env)
 			if (env->map[i][j] == 'N' || env->map[i][j] == 'S' \
 			|| env->map[i][j] == 'W' || env->map[i][j] == 'E' )
 			{
-				env->player_pos_x = j;
-				env->player_pos_y = i;
+				env->player_pos_x = i;
+				env->player_pos_y = j;
 				ft_setorientation(env, env->map[i][j]);
 				n++;
 			}

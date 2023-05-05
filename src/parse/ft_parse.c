@@ -38,7 +38,7 @@ static void	ft_getcolor(t_env *env, char *line, char elem, int *nelem)
 	int		g;
 	int		b;
 
-	tmp = ft_split(++line, ',');
+	tmp = ft_split(++line, ','); // TODO check identifier
 	len = ft_tablen(tmp); // TODO check == 3
 	r = ft_atoi(tmp[0]);
 	g = ft_atoi(tmp[1]);
