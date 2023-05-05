@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 09:16:37 by jde-la-f          #+#    #+#             */
-/*   Updated: 2023/05/05 10:29:38 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/05 10:38:49 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ void    move(t_env *env, double move_x, double move_y, int dir)
 {
     if (dir == 1)
     {
-        if (env->map[(int)env->player_pos_y][(int)(env->player_pos_x + move_x)] != '1')
+        //if (env->map[(int)env->player_pos_y][(int)(env->player_pos_x + move_x)] != '1')
             env->player_pos_x += move_x;
-        if (env->map[(int)(env->player_pos_y + move_y)][(int)env->player_pos_x] != '1')
+        //if (env->map[(int)(env->player_pos_y + move_y)][(int)env->player_pos_x] != '1')
             env->player_pos_y += move_y;   
     }
     if (dir == -1)
     {
-        if (env->map[(int)env->player_pos_y][(int)(env->player_pos_x - move_x)] != '1')
+        //if (env->map[(int)env->player_pos_y][(int)(env->player_pos_x - move_x)] != '1')
             env->player_pos_x -= move_x;
-        if (env->map[(int)(env->player_pos_y - move_y)][(int)env->player_pos_x] != '1')
+        //if (env->map[(int)(env->player_pos_y - move_y)][(int)env->player_pos_x] != '1')
             env->player_pos_y -= move_y;   
     }
 }
