@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 12:05:40 by jde-la-f          #+#    #+#             */
-/*   Updated: 2023/05/05 10:32:42 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/05 11:02:04 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,15 @@ void compute_drawing(t_env *env)
 		if (env->draw_end >= HEIGHT)
 			env->draw_end = HEIGHT - 1;
 
-        env->color = 0x00880000;
+		if (env->side == 0 && env->ray_dir_x < 0)
+			env->color = 0x00880000;
+		if (env->side == 0 && env->ray_dir_x > 0)
+			env->color = 0x00008800;
+		if (env->side == 1 && env->ray_dir_y < 0)
+			env->color = 0x00000088;
+		if (env->side == 1 && env->ray_dir_y > 0)
+			env->color = 0x00FFFFFF;
+        
 }
 
 int	close_game(t_env *env)
