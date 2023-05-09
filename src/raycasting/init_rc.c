@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 12:05:40 by jde-la-f          #+#    #+#             */
-/*   Updated: 2023/05/09 08:53:05 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/09 10:23:23 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,38 @@ int	raycasting(t_env *env)
 	return (0);
 }
 
+void	minimaping(t_env *env)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (env->map[i])
+	{
+		j = 0;
+		while (env->map[i][j])
+		{
+			if (env->map[i][j] == '1')
+				draw_minimap(env, j * 7, i * 7, 0x00FFFFFF);
+			else if (env->map[i][j] == '0')
+				draw_minimap(env, j * 7, i * 7, 0x00000000);
+			else if (env->map[i][j] == 'N' || env->map[i][j] == 'S'
+				|| env->map[i][j] == 'E' || env->map[i][j] == 'W')
+				draw_minimap(env, j * 7, i * 7, 0x00000000);
+			else
+				draw_minimap(env, (int)env->player_pos_y * 7, (int)env->player_pos_x * 7, 0xEEEE20);
+			j++;
+		}
+		i++;
+	}
+}
+
 int	render(t_env *env)
 {
 	raycasting(env);
+	minimaping(env);
 	mlx_put_image_to_window(env->mlx, env->mlx_win, env->img[0].mlx_img, 0, 0);
+	mlx_put_image_to_window(env->mlx, env->mlx_win, env->minimap.mlx_img, 10, 10);
 	return (0);
 }

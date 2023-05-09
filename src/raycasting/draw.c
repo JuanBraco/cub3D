@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 12:08:34 by jde-la-f          #+#    #+#             */
-/*   Updated: 2023/05/08 17:16:56 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/09 10:20:53 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,19 @@ static void	init_drawing_value(t_env *env)
 static void	init_texture_draw(t_env *env)
 {
 	if (env->side == 0)
-		env->wall_height = env->player_pos_y + env->perp_wall_dist
+		env->wall_width = env->player_pos_y + env->perp_wall_dist
 			* env->ray_dir_y;
 	else
-		env->wall_height = env->player_pos_x + env->perp_wall_dist
+		env->wall_width = env->player_pos_x + env->perp_wall_dist
 			* env->ray_dir_x;
-	env->wall_height -= floor(env->wall_height);
-	env->tex_x = env->wall_height * 128;
+	env->wall_width -= floor(env->wall_width);
+	env->tex_x = env->wall_width * TEXT_WIDTH;
 	if ((env->side == 0 && env->ray_dir_x > 0) || (env->side == 1
 			&& env->ray_dir_y < 0))
-		env->tex_x = 128 - env->tex_x - 1;
-	env->incr = 128.0 / env->line_height;
-	env->tex_pos = (env->draw_start - HEIGHT / 2 + env->line_height / 2)
-		* env->incr;
+		env->tex_x = TEXT_WIDTH - env->tex_x - 1;
+	env->text_incr_y = TEXT_HEIGHT * 1.0 / env->line_height;
+	env->tex_pos_y = (env->draw_start - HEIGHT / 2 + env->line_height / 2)
+		* env->text_incr_y;
 }
 
 void	draw_column_slice(t_env *env, int x)
@@ -79,12 +79,40 @@ void	draw_column_slice(t_env *env, int x)
 		my_mlx_pixel_put(env, x, tmp++, env->ceilcolor);
 	while (tmp < env->draw_end)
 	{
-		env->tex_y = (int)env->tex_pos & (128 - 1);
-		env->tex_pos += env->incr;
-		my_mlx_pixel_put(env, x, tmp, get_color(env, env->tex_x, env->tex_y,
+		my_mlx_pixel_put(env, x, tmp, get_color(env, env->tex_x, (int)env->tex_pos_y,
 				env->texture_img));
+		env->tex_pos_y += env->text_incr_y;
 		tmp++;
 	}
 	while (tmp < HEIGHT)
 		my_mlx_pixel_put(env, x, tmp++, env->floorcolor);
+}
+
+
+void	my_mlx_pixel_put_minimap(t_env *env, int x, int y, int color)
+{
+	char	*pixel;
+
+	if (y < 0 || y > HEIGHT - 1 || x < 0 || x > WIDTH - 1)
+		return ;
+	pixel = env->minimap.addr + (y * env->minimap.line_len + x * (env->minimap.bpp
+				/ 8));
+	*(int *)pixel = color;
+}
+
+void	draw_minimap(t_env *env, int y, int x, int color)
+{
+	int i = 0;
+	int j = 0;
+	
+	while (i < 7)
+	{
+		j = 0;
+		while (j < 7)
+		{
+			my_mlx_pixel_put_minimap(env, y + i, x + j, color);
+			j++;
+		}
+		i++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:17:23 by adcarnec          #+#    #+#             */
-/*   Updated: 2023/05/08 17:09:56 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/09 10:28:51 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	close_game(t_env *env)
 	i = -1;
 	while (++i < 5)
 		mlx_destroy_image(env->mlx, env->img[i].mlx_img);
+	mlx_destroy_image(env->mlx, env->minimap.mlx_img);
 	mlx_destroy_window(env->mlx, env->mlx_win);
 	mlx_destroy_display(env->mlx);
 	free(env->mlx);
@@ -31,9 +32,13 @@ void	graphic_error(t_env *env, char *message)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
 	ft_putstr_fd(message, 2);
-	mlx_destroy_image(env->mlx, env->img[0].mlx_img);
+	while (++i < 5)
+	{
+		if (env->img[0].mlx_img)
+			mlx_destroy_image(env->mlx, env->img[i].mlx_img);
+	}
 	if (env->mlx_win)
 		mlx_destroy_window(env->mlx, env->mlx_win);
 	if (env->mlx)
@@ -56,22 +61,27 @@ void	ft_init_game(t_env *env)
 	env->mlx_win = mlx_new_window(env->mlx, WIDTH, HEIGHT, "cub3d");
 	if (!env->mlx_win)
 		graphic_error(env, "Error : Initialisation of window has failed\n");
+	env->minimap.mlx_img = mlx_new_image(env->mlx, WIDTH / 7, HEIGHT / 7);
+	env->minimap.addr = mlx_get_data_addr(env->minimap.mlx_img,
+				&env->minimap.bpp, &env->minimap.line_len, &env->minimap.endian);
 }
 
 void	launch_game(t_env *env)
 {
 	int	i;
 
-	env->img[0].mlx_img = mlx_new_image(env->mlx, WIDTH, HEIGHT);
-	env->img[0].addr = mlx_get_data_addr(env->img[0].mlx_img, &env->img[0].bpp,
-			&env->img[0].line_len, &env->img[0].endian);
-	i = 1;
+	i = 0;
 	while (i < 5)
 	{
-		env->img[i].mlx_img = mlx_xpm_file_to_image(env->mlx, env->img[i].path,
+		if (i == 0)
+			env->img[i].mlx_img = mlx_new_image(env->mlx, WIDTH, HEIGHT);
+		else 
+		{
+			env->img[i].mlx_img = mlx_xpm_file_to_image(env->mlx, env->img[i].path,
 				&env->img[i].width, &env->img[i].height);
-		if (!env->img[i].mlx_img)
-			graphic_error(env, "Error : Path texture is incorrect\n");
+		}
+		if (!env->img[i].mlx_img || !env->minimap.mlx_img)
+			graphic_error(env, "Error : image creation failed\n");
 		env->img[i].addr = mlx_get_data_addr(env->img[i].mlx_img,
 				&env->img[i].bpp, &env->img[i].line_len, &env->img[i].endian);
 		i++;
