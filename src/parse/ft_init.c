@@ -83,6 +83,5 @@ int	ft_init(t_env *env, int ac, char **av)
 		return (-1);
 	if (ft_parse(env, ft_split(line, '\n')) == -1)
 		return (free(line), -1);
-	ft_printtab(env->map);
 	return (free(line), 0);
 }
