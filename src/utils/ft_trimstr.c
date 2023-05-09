@@ -16,11 +16,15 @@ char	*ft_trimstr(char *src)
 {
 	int		i;
 
-	if (src)
+	if (src && ft_strlen(src) > 0)
 	{
+		i = ft_strlen(src);
+		while (src[--i] == ' ')
+			src[i] = 0;
 		i = 0;
-		while (src[i] == ' ' || (src[i] >= 9 && src[i] <= 13))
+		while (src[i] == ' ')
 			i++;
+		return (&src[i]);
 	}
 	return (src);
 }

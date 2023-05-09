@@ -1,14 +1,14 @@
 
 
-WE img/STONE3.xpm
+WE    img/STONE3.xpm
 
-EA img/SP_HOT1.xpm
+   EA img/SP_HOT1.xpm
 
 NO ./img/WALL.xpm
 
-SO ./img/STONE2.xpm
+ SO   ./img/STONE2.xpm  
 
-F 126,81,9
+ F   126  , 81 , 9    
 C 133,193,233 
 
 111111111111111111111111111111111
