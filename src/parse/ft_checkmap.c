@@ -39,6 +39,14 @@ static void	ft_setorientation(t_env *env, char o)
 	}
 }
 
+static void	ft_setplayer(t_env *env, char o, int x, int y)
+{
+	env->player_o = o;
+	ft_setorientation(env, o);
+	env->player_pos_x = x;
+	env->player_pos_y = y;
+}
+
 int	ft_checkmap(t_env *env)
 {
 	int		i;
@@ -55,11 +63,12 @@ int	ft_checkmap(t_env *env)
 			if (env->map[i][j] == 'N' || env->map[i][j] == 'S' \
 			|| env->map[i][j] == 'W' || env->map[i][j] == 'E' )
 			{
-				env->player_pos_x = i;
-				env->player_pos_y = j;
-				ft_setorientation(env, env->map[i][j]);
+				ft_setplayer(env, env->map[i][j], i, j);
 				n++;
 			}
+			else if (env->map[i][j] != '0' && env->map[i][j] != '1' \
+			&& env->map[i][j] != ' ')
+				return (printf("Error\nInvalid map character\n"), -1);
 		}
 	}
 	if (n != 1)
