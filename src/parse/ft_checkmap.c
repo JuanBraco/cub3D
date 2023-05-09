@@ -49,7 +49,6 @@ int	ft_checkmap(t_env *env)
 	n = 0;
 	while (env->map[++i])
 	{
-		printf("%s\n", env->map[i]);
 		j = -1;
 		while (env->map[i][++j])
 		{
