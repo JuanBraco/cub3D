@@ -21,6 +21,7 @@ int		ft_strlen(char *src);
 char	*ft_strdup(char *src);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_substr(char *src, int start, int end);
+char	*ft_trimstr(char *src);
 int		ft_atoi(char *src);
 int		ft_tablen(char **tab);
 void	ft_freetab(char **tab);

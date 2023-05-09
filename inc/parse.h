@@ -21,5 +21,6 @@
 int	ft_parse(t_env *env, char **tmp);
 int	ft_checkmap(t_env *env);
 int	ft_checkwall(t_env *env);
+int	ft_checkelem(t_env *env, char **tmp);
 
 #endif
