@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:22:01 by adcarnec          #+#    #+#             */
-/*   Updated: 2023/05/09 10:00:48 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/09 10:34:57 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,6 @@ void					draw_column_slice(t_env *env, int x);
 
 int						key_hook(int key, t_env *env);
 int						mouse_hook(int x, int y, t_env *env);
-void					ft_init_texture(t_env *env);
-void	draw_minimap(t_env *env, int x, int y, int color);
+void					draw_minimap(t_env *env, int x, int y, int color);
 
 #endif

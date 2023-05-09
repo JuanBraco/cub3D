@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 12:08:34 by jde-la-f          #+#    #+#             */
-/*   Updated: 2023/05/09 10:20:53 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/09 10:51:40 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,11 +104,12 @@ void	draw_minimap(t_env *env, int y, int x, int color)
 {
 	int i = 0;
 	int j = 0;
+	int frac =  floor(((double)WIDTH / 7.0) / (double)env->map_w);
 	
-	while (i < 7)
+	while (i < frac)
 	{
 		j = 0;
-		while (j < 7)
+		while (j < frac)
 		{
 			my_mlx_pixel_put_minimap(env, y + i, x + j, color);
 			j++;
