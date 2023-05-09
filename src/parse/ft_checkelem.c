@@ -16,7 +16,12 @@
 
 static void	ft_settexture(t_env *env, char *line, int *nelem, int index)
 {
-	env->img[index].path = line;
+	char	*tmp;
+
+	tmp = ft_strdup(line);
+	if (!tmp)
+		perror("Error\nmalloc");
+	env->img[index].path = tmp;
 	*nelem = *nelem + 1;
 }
 

@@ -19,8 +19,10 @@ int	close_management(t_env *env)
 	i = -1;
 	while (++i < 5)
 	{
-		if (env->img[0].mlx_img)
+		if (env->img[i].mlx_img)
 			mlx_destroy_image(env->mlx, env->img[i].mlx_img);
+		if (i != 0 && env->img[i].path)
+			free(env->img[i].path);
 	}
 	if (env->minimap.mlx_img)
 		mlx_destroy_image(env->mlx, env->minimap.mlx_img);
@@ -43,8 +45,10 @@ int	error_management(t_env *env, char *msg)
 		ft_putstr_fd(msg, 2);
 	while (++i < 5)
 	{
-		if (env->img[0].mlx_img)
+		if (env->img[i].mlx_img)
 			mlx_destroy_image(env->mlx, env->img[i].mlx_img);
+		if (i != 0 && env->img[i].path)
+			free(env->img[i].path);
 	}
 	if (env->minimap.mlx_img)
 		mlx_destroy_image(env->mlx, env->minimap.mlx_img);
@@ -62,10 +66,6 @@ void	ft_init_game(t_env *env)
 {
 	env->move_speed = 0.09;
 	env->cam_speed = 0.09;
-	env->img[1].path = "img/WALL.xpm";
-	env->img[2].path = "img/STONE2.xpm";
-	env->img[3].path = "img/STONE3.xpm";
-	env->img[4].path = "img/SP_HOT1.xpm";
 	env->mlx = mlx_init();
 	if (!env->mlx)
 		error_management(env, "Error\nInitialisation of display has failed\n");
