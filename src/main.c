@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:17:23 by adcarnec          #+#    #+#             */
-/*   Updated: 2023/05/05 16:27:49 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/08 17:09:56 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_init_game(t_env *env)
 	env->move_speed = 0.09;
 	env->cam_speed = 0.09;
 	env->img[1].path = "img/WALL.xpm";
-	env->img[2].path = "img/MARBFAC2.xpm";
+	env->img[2].path = "img/STONE2.xpm";
 	env->img[3].path = "img/STONE3.xpm";
 	env->img[4].path = "img/SP_HOT1.xpm";
 	env->mlx = mlx_init();
@@ -74,11 +74,11 @@ void	launch_game(t_env *env)
 			graphic_error(env, "Error : Path texture is incorrect\n");
 		env->img[i].addr = mlx_get_data_addr(env->img[i].mlx_img,
 				&env->img[i].bpp, &env->img[i].line_len, &env->img[i].endian);
-		printf("height : %i",env->img[i].width);
 		i++;
 	}
 	mlx_loop_hook(env->mlx, &render, env);
 	mlx_hook(env->mlx_win, 2, 1L << 0, key_hook, env);
+	mlx_hook(env->mlx_win, 6, 1L << 6, mouse_hook, env);
 	mlx_hook(env->mlx_win, 17, 1L << 0, close_game, env);
 	mlx_loop(env->mlx);
 }

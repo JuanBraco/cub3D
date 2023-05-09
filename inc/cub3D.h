@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:22:01 by adcarnec          #+#    #+#             */
-/*   Updated: 2023/05/05 16:54:04 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/08 17:26:04 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ struct					s_env
 	double				dir_y;
 	double				plane_x;
 	double				plane_y;
-	double				camera_x;
+	double				ray_incr;
 	double				ray_dir_x;
 	double				ray_dir_y;
 	int					map_x;
@@ -93,11 +93,11 @@ struct					s_env
 	int					color;
 	int					draw_start;
 	int					draw_end;
-	int					line_height;
+	double				wall_height;
 	double				move_speed;
 	double				cam_speed;
 	int					texture_img;
-	double				wall_height;
+	int					line_height;
 	double				incr;
 	double				tex_pos;
 	int					tex_x;
@@ -121,6 +121,7 @@ void					my_mlx_pixel_put(t_env *env, int x, int y, int color);
 void					draw_column_slice(t_env *env, int x);
 
 int						key_hook(int key, t_env *env);
+int						mouse_hook(int x, int y, t_env *env);
 void					ft_init_texture(t_env *env);
 
 #endif

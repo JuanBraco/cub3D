@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 09:16:37 by jde-la-f          #+#    #+#             */
-/*   Updated: 2023/05/05 15:47:21 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/08 17:09:31 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,15 @@ int	key_hook(int key, t_env *env)
 		rotate(env, -env->cam_speed);
 	else if (key == KEY_L)
 		rotate(env, env->cam_speed);
+	return (0);
+}
+
+int	mouse_hook(int x, int y, t_env *env)
+{
+	(void)y;
+	if (x > (int)(WIDTH / 1.2))
+		rotate(env, -env->cam_speed / 3);
+	else if (x < (int)(WIDTH / 6))
+		rotate(env, env->cam_speed / 3);
 	return (0);
 }
