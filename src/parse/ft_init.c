@@ -23,20 +23,12 @@ static void	ft_init_env(t_env *env)
 	env->cell_size = 32;
 	env->ceilcolor = -1;
 	env->floorcolor = -1;
-	env->wall_n_img = NULL;
-	env->wall_s_img = NULL;
-	env->wall_w_img = NULL;
-	env->wall_e_img = NULL;
 	env->map = NULL;
 	env->player_o = 'X';
 	env->player_pos_x = 0;
 	env->player_pos_y = 0;
 	env->dir_x = 0;
 	env->dir_y = 0;
-	env->tmp_wn_color = 0x00B3B6B7 ;
-	env->tmp_ws_color = 0x00616A6B;
-	env->tmp_we_color = 0x00909497;
-	env->tmp_ww_color = 0x00717D7E;
 }
 
 static char	*ft_load(int ac, char **av)

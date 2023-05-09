@@ -28,7 +28,8 @@
 		mlx_destroy_display(env->mlx); */
 void	ft_free(t_env *env)
 {
-	if (env){
+	if (env)
+	{
 		if (env->mlx)
 			free(env->mlx);
 		if (env->map)

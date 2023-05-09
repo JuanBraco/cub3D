@@ -22,28 +22,28 @@ void	ft_setorientation(t_env *env, char o)
 		env->dir_x = -1;
 		env->dir_y = 0;
 		env->plane_x = 0;
-    	env->plane_y = 0.66;
+		env->plane_y = 0.66;
 	}
 	else if (o == 'S')
 	{
 		env->dir_x = 1;
 		env->dir_y = 0;
 		env->plane_x = 0;
-    	env->plane_y = -0.66;
+		env->plane_y = -0.66;
 	}
 	else if (o == 'E')
 	{
 		env->dir_x = 0;
 		env->dir_y = 1;
 		env->plane_x = 0.66;
-    	env->plane_y = 0;
+		env->plane_y = 0;
 	}
 	else if (o == 'W')
 	{
 		env->dir_x = 0;
 		env->dir_y = -1;
 		env->plane_x = -0.66;
-    	env->plane_y = 0;
+		env->plane_y = 0;
 	}
 }
 
