@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tab.c                                           :+:      :+:    :+:   */
+/*   ft_checkext.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adcarnec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,67 +12,35 @@
 
 #include "utils.h"
 
-void	ft_freetab(char **tab)
-{
-	int	i_tab;
-
-	i_tab = 0;
-	while (tab[i_tab])
-	{
-		free(tab[i_tab]);
-		tab[i_tab] = NULL;
-		i_tab++;
-	}
-	free(tab);
-	tab = NULL;
-}
-
-int	ft_tablen(char **tab)
-{
-	int	len;
-
-	len = 0;
-	if (tab && *tab)
-	{
-		while (tab[len])
-			len++;
-	}
-	return (len);
-}
-
-char	**ft_tabdup(char **tab)
-{
-	char	**copy;
-	int		i;
-
-	copy = NULL;
-	if (tab && *tab)
-	{
-		copy = malloc(sizeof(char *) * (ft_tablen(tab) + 1));
-		if (copy)
-		{
-			i = -1;
-			while (tab[++i])
-			{
-				copy[i] = ft_strdup(tab[i]);
-				if (!copy[i])
-					return (ft_freetab(copy), NULL);
-			}
-			copy[i] = NULL;
-		}
-	}
-	return (copy);
-}
-
-void	ft_printtab(char **tab)
+int	ft_strcmp(const char *src1, const char *src2)
 {
 	int	i;
 
-	i = -1;
-	if (tab && *tab)
+	if (!src1 && !src2)
+		return (0);
+	if (src1 && src2)
 	{
-		printf("\n");
-		while (tab[++i])
-			printf("%s\n", tab[i]);
+		i = 0;
+		while (src1[i] && src2[i])
+		{
+			if (src1[i] != src2[i])
+				return (src1[i] - src2[i]);
+			i++;
+		}
+		return (src1[i] - src2[i]);
 	}
+	return (-1);
+}
+
+int	ft_checkext(char *file, char *ext)
+{
+	int		ret;
+
+	ret = -1;
+	if (file && ext)
+	{
+		if (ft_strcmp(&file[ft_strlen(file) - ft_strlen(ext)], ext) == 0)
+			ret = 0;
+	}
+	return (ret);
 }

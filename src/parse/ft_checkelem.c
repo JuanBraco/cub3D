@@ -30,7 +30,9 @@ static int	ft_gettexture(t_env *env, char *line, int *nelem)
 		i = 2;
 		while (line[i] == ' ')
 			i++;
-		fd = open(&line[i], O_RDONLY); // TODO check extension
+		if (ft_checkext(&line[i], ".xpm") == -1)
+			return (printf("Error\nInvalid image extension\n"), -1);
+		fd = open(&line[i], O_RDONLY);
 		if (fd == -1)
 			return (perror("Error\nopen"), -1);
 		if (close(fd) == -1)
@@ -44,7 +46,7 @@ static int	ft_gettexture(t_env *env, char *line, int *nelem)
 		else if (line[0] == 'E' && line[1] == 'A' && line[2] == ' ')
 			return (ft_settexture(env, &line[i], nelem, 4), 0);
 	}
-	return (printf("ERROR\nInvalid texture identifier\n"), -1);
+	return (printf("Error\nInvalid texture identifier\n"), -1);
 }
 
 static int	ft_getcolor(t_env *env, char *line, char elem, int *nelem)
@@ -53,13 +55,13 @@ static int	ft_getcolor(t_env *env, char *line, char elem, int *nelem)
 
 	if (ft_strlen(line) < 7 || (line[0] != 'F' && line[0] != 'C') || \
 	line[1] != ' ')
-		return (printf("ERROR\nInvalid color identifier\n"), -1);
+		return (printf("Error\nInvalid color identifier\n"), -1);
 	tmp = ft_split(++line, ',');
 	if (ft_tablen(tmp) != 3)
-		return (printf("ERROR\nInvalid color identifier\n"), -1);
+		return (printf("Error\nInvalid color identifier\n"), -1);
 	if (ft_atoi(tmp[0]) < 0 || ft_atoi(tmp[0]) > 255 || ft_atoi(tmp[1]) < 0 || \
 	ft_atoi(tmp[1]) > 255 || ft_atoi(tmp[2]) < 0 || ft_atoi(tmp[2]) > 255)
-		return (printf("ERROR\nInvalid color identifier\n"), ft_freetab(tmp), -1);
+		return (printf("Error\nInvalid color identifier\n"), ft_freetab(tmp), -1);
 	if (elem == 'F')
 		env->floorcolor = ((ft_atoi(tmp[0]) & 0xff) << 16) + \
 		((ft_atoi(tmp[1]) & 0xff) << 8) + (ft_atoi(tmp[2]) & 0xff);

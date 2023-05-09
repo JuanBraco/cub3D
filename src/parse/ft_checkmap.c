@@ -14,36 +14,28 @@
 #include "parse.h"
 #include "utils.h"
 
-void	ft_setorientation(t_env *env, char o)
+static void	ft_setorientation(t_env *env, char o)
 {
 	env->player_o = o;
 	if (o == 'N')
 	{
 		env->dir_x = -1;
-		env->dir_y = 0;
-		env->plane_x = 0;
 		env->plane_y = 0.66;
 	}
 	else if (o == 'S')
 	{
 		env->dir_x = 1;
-		env->dir_y = 0;
-		env->plane_x = 0;
 		env->plane_y = -0.66;
 	}
 	else if (o == 'E')
 	{
-		env->dir_x = 0;
 		env->dir_y = 1;
 		env->plane_x = 0.66;
-		env->plane_y = 0;
 	}
 	else if (o == 'W')
 	{
-		env->dir_x = 0;
 		env->dir_y = -1;
 		env->plane_x = -0.66;
-		env->plane_y = 0;
 	}
 }
 
@@ -72,6 +64,6 @@ int	ft_checkmap(t_env *env)
 		}
 	}
 	if (n != 1)
-		return (printf("Error\n Invalid player's position\n"), -1);
+		return (printf("Error\nInvalid player's position\n"), -1);
 	return (ft_checkwall(env));
 }

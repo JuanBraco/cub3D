@@ -60,10 +60,10 @@ int	ft_parse(t_env *env, char **tmp)
 	if (!tmp)
 		return (perror("Error\nmalloc"), -1);
 	i = ft_checkelem(env, tmp);
-	if (ft_elemsset(env) == -1)
-		return (printf("Error\nMissing element\n"), ft_freetab(tmp), -1);
 	if (i == -1)
 		return (-1);
+	if (ft_elemsset(env) == -1)
+		return (printf("Error\nMissing element\n"), ft_freetab(tmp), -1);
 	while (ft_strlen(tmp[i]) <= 1)
 		i++;
 	if (ft_getmap(env, &tmp[i]) == -1 || ft_checkmap(env) == -1)

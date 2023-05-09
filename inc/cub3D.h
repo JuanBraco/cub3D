@@ -60,19 +60,10 @@ struct					s_env
 
 	int					map_w;
 	int					map_h;
-	int					cell_size;
 	char				**map;
 	char				player_o;
 	int					ceilcolor;
 	int					floorcolor;
-	void				*wall_n_img;
-	void				*wall_s_img;
-	void				*wall_w_img;
-	void				*wall_e_img;
-	int					tmp_wn_color;
-	int					tmp_ws_color;
-	int					tmp_we_color;
-	int					tmp_ww_color;
 
 	double				player_pos_x;
 	double				player_pos_y;

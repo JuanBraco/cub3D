@@ -58,7 +58,7 @@ void	minimaping(t_env *env)
 		j = 0;
 		while (env->map[i][j])
 		{
-            draw_minimap(env, j * env->m_fact, i * env->m_fact, 0x000000);
+			draw_minimap(env, j * env->m_fact, i * env->m_fact, 0x000000);
 			if (env->map[i][j] == '1')
 				draw_minimap(env, j * env->m_fact, i * env->m_fact, 0xFFFFFF);
 			draw_minimap(env, (int)env->player_pos_y * env->m_fact,

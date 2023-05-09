@@ -102,6 +102,6 @@ int	render(t_env *env)
 	minimaping(env);
 	mlx_put_image_to_window(env->mlx, env->mlx_win, env->img[0].mlx_img, 0, 0);
 	mlx_put_image_to_window(env->mlx, env->mlx_win, env->minimap.mlx_img, 10,
-			10);
+		10);
 	return (0);
 }

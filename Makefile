@@ -18,7 +18,7 @@ SRC			=	./src/parse/ft_init.c ./src/parse/ft_parse.c ./src/parse/ft_checkmap.c\
 				./src/utils/ft_str.c ./src/utils/ft_tab.c ./src/utils/ft_split.c \
 				./src/free/ft_free.c ./src/main.c ./src/raycasting/draw.c \
 				./src/raycasting/init_rc.c ./src/utils/ft_putstr_fd.c ./src/key.c \
-				./src/raycasting/minimap.c
+				./src/raycasting/minimap.c ./src/utils/ft_checkext.c
 OBJ			=	$(SRC:.c=.o)
 INC_PATH	=	./inc/
 

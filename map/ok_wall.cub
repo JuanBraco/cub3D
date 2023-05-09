@@ -1,8 +1,15 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+
+
+WE img/STONE3.xpm
+
+EA img/SP_HOT1.xpm
+
+NO ./img/WALL.xpm
+
+SO ./img/STONE2.xpm
+
 F 126,81,9
+
 C 133,193,233 
 
 00100000000000000010000

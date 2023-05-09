@@ -87,7 +87,7 @@ int	ft_checkwall(t_env *env)
 
 	map = ft_tabdup(env->map);
 	if (!map)
-		return (perror("Error\n"), -1);
+		return (perror("Error\nmalloc"), -1);
 	start_x = -1;
 	start_y = -1;
 	ft_fill(env, map, env->player_pos_y, env->player_pos_x);
