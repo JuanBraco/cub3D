@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:22:01 by adcarnec          #+#    #+#             */
-/*   Updated: 2023/05/09 10:34:57 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/09 10:58:59 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ struct					s_env
 	void				*mlx_win;
 	t_img				img[5];
 	t_img				minimap;
+	int					delta_minim;
 
 	int					map_w;
 	int					map_h;

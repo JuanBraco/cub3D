@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 12:05:40 by jde-la-f          #+#    #+#             */
-/*   Updated: 2023/05/09 10:57:16 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/09 11:00:08 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,24 +99,23 @@ void	minimaping(t_env *env)
 {
 	int	i;
 	int	j;
-	int frac;
 
 	i = 0;
 	j = 0;
-	frac =  floor(((double)WIDTH / 7.0) / (double)env->map_w);
+	env->delta_minim =  floor(((double)WIDTH / 7.0) / (double)env->map_w);
 	while (env->map[i])
 	{
 		j = 0;
 		while (env->map[i][j])
 		{
 			if (env->map[i][j] == '1')
-				draw_minimap(env, j * frac, i * frac, 0x00FFFFFF);
+				draw_minimap(env, j * env->delta_minim, i * env->delta_minim, 0x00FFFFFF);
 			else if (env->map[i][j] == '0')
-				draw_minimap(env, j * frac, i * frac, 0x00000000);
+				draw_minimap(env, j * env->delta_minim, i * env->delta_minim, 0x00000000);
 			else if (env->map[i][j] == 'N' || env->map[i][j] == 'S'
 				|| env->map[i][j] == 'E' || env->map[i][j] == 'W')
-				draw_minimap(env, j * frac, i * frac, 0x00000000);
-			draw_minimap(env, (int)env->player_pos_y * frac, (int)env->player_pos_x * frac, 0xFF0000);
+				draw_minimap(env, j * env->delta_minim, i * env->delta_minim, 0x00000000);
+			draw_minimap(env, (int)env->player_pos_y * env->delta_minim, (int)env->player_pos_x * env->delta_minim, 0xFF);
 			j++;
 		}
 		i++;
