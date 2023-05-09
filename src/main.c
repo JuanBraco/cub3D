@@ -6,45 +6,34 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:17:23 by adcarnec          #+#    #+#             */
-/*   Updated: 2023/05/09 10:28:51 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/09 11:13:03 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	close_game(t_env *env)
+int	close_management(t_env *env)
 {
 	int	i;
 
 	i = -1;
-	while (++i < 5)
-		mlx_destroy_image(env->mlx, env->img[i].mlx_img);
-	mlx_destroy_image(env->mlx, env->minimap.mlx_img);
-	mlx_destroy_window(env->mlx, env->mlx_win);
-	mlx_destroy_display(env->mlx);
-	free(env->mlx);
-	if (env->map)
-		ft_freetab(env->map);
-	exit(0);
-}
-
-void	graphic_error(t_env *env, char *message)
-{
-	int	i;
-
-	i = -1;
-	ft_putstr_fd(message, 2);
+	/*if (message)
+		ft_putstr_fd(message, 2);*/
 	while (++i < 5)
 	{
 		if (env->img[0].mlx_img)
 			mlx_destroy_image(env->mlx, env->img[i].mlx_img);
 	}
+	if (env->minimap.mlx_img)
+		mlx_destroy_image(env->mlx, env->minimap.mlx_img);
 	if (env->mlx_win)
 		mlx_destroy_window(env->mlx, env->mlx_win);
 	if (env->mlx)
 		mlx_destroy_display(env->mlx);
 	free(env->mlx);
-	exit(EXIT_FAILURE);
+	if (env->map)
+		ft_freetab(env->map);
+	exit(0);
 }
 
 void	ft_init_game(t_env *env)
@@ -57,13 +46,15 @@ void	ft_init_game(t_env *env)
 	env->img[4].path = "img/SP_HOT1.xpm";
 	env->mlx = mlx_init();
 	if (!env->mlx)
-		graphic_error(env, "Error : Initialisation of display has failed\n");
+		//close_management(env, "Error : Initialisation of display has failed\n");
+		close_management(env);
 	env->mlx_win = mlx_new_window(env->mlx, WIDTH, HEIGHT, "cub3d");
 	if (!env->mlx_win)
-		graphic_error(env, "Error : Initialisation of window has failed\n");
+		//close_management(env, "Error : Initialisation of window has failed\n");
+		close_management(env);
 	env->minimap.mlx_img = mlx_new_image(env->mlx, WIDTH / 7, HEIGHT / 7);
 	env->minimap.addr = mlx_get_data_addr(env->minimap.mlx_img,
-				&env->minimap.bpp, &env->minimap.line_len, &env->minimap.endian);
+			&env->minimap.bpp, &env->minimap.line_len, &env->minimap.endian);
 }
 
 void	launch_game(t_env *env)
@@ -75,13 +66,14 @@ void	launch_game(t_env *env)
 	{
 		if (i == 0)
 			env->img[i].mlx_img = mlx_new_image(env->mlx, WIDTH, HEIGHT);
-		else 
+		else
 		{
-			env->img[i].mlx_img = mlx_xpm_file_to_image(env->mlx, env->img[i].path,
-				&env->img[i].width, &env->img[i].height);
+			env->img[i].mlx_img = mlx_xpm_file_to_image(env->mlx,
+					env->img[i].path, &env->img[i].width, &env->img[i].height);
 		}
 		if (!env->img[i].mlx_img || !env->minimap.mlx_img)
-			graphic_error(env, "Error : image creation failed\n");
+			//close_management(env, "Error : image creation failed\n");
+			close_management(env);
 		env->img[i].addr = mlx_get_data_addr(env->img[i].mlx_img,
 				&env->img[i].bpp, &env->img[i].line_len, &env->img[i].endian);
 		i++;
@@ -89,7 +81,7 @@ void	launch_game(t_env *env)
 	mlx_loop_hook(env->mlx, &render, env);
 	mlx_hook(env->mlx_win, 2, 1L << 0, key_hook, env);
 	mlx_hook(env->mlx_win, 6, 1L << 6, mouse_hook, env);
-	mlx_hook(env->mlx_win, 17, 1L << 0, close_game, env);
+	mlx_hook(env->mlx_win, 17, 1L << 0, close_management, env);
 	mlx_loop(env->mlx);
 }
 

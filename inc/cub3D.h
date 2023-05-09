@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:22:01 by adcarnec          #+#    #+#             */
-/*   Updated: 2023/05/09 10:58:59 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/09 11:21:15 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ struct					s_env
 	void				*mlx_win;
 	t_img				img[5];
 	t_img				minimap;
-	int					delta_minim;
+	int					m_fact;
 
 	int					map_w;
 	int					map_h;
@@ -114,11 +114,9 @@ void					ft_free(t_env *env);
 
 /* RAYCASTING */
 
-void					calc_rc(t_env *env, int x);
 int						raycasting(t_env *env);
 int						render(t_env *env);
-int						close_game(t_env *env);
-void					graphic_error(t_env *env, char *message);
+int						close_management(t_env *env);
 
 /* DRAW.C */
 
@@ -128,5 +126,7 @@ void					draw_column_slice(t_env *env, int x);
 int						key_hook(int key, t_env *env);
 int						mouse_hook(int x, int y, t_env *env);
 void					draw_minimap(t_env *env, int x, int y, int color);
+
+void					minimaping(t_env *env);
 
 #endif

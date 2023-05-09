@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 12:08:34 by jde-la-f          #+#    #+#             */
-/*   Updated: 2023/05/09 11:00:20 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/09 11:18:11 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	get_color(t_env *env, int x, int y, int i)
 			* (env->img[i].bpp / 8))));
 }
 
-/* First compute line height proportion and then retrieve corresponding texture*/
+/* First compute line height proportion
+and then retrieve corresponding texture*/
 
 static void	init_drawing_value(t_env *env)
 {
@@ -79,40 +80,11 @@ void	draw_column_slice(t_env *env, int x)
 		my_mlx_pixel_put(env, x, tmp++, env->ceilcolor);
 	while (tmp < env->draw_end)
 	{
-		my_mlx_pixel_put(env, x, tmp, get_color(env, env->tex_x, (int)env->tex_pos_y,
-				env->texture_img));
+		my_mlx_pixel_put(env, x, tmp, get_color(env, env->tex_x,
+				(int)env->tex_pos_y, env->texture_img));
 		env->tex_pos_y += env->text_incr_y;
 		tmp++;
 	}
 	while (tmp < HEIGHT)
 		my_mlx_pixel_put(env, x, tmp++, env->floorcolor);
-}
-
-
-void	my_mlx_pixel_put_minimap(t_env *env, int x, int y, int color)
-{
-	char	*pixel;
-
-	if (y < 0 || y > HEIGHT - 1 || x < 0 || x > WIDTH - 1)
-		return ;
-	pixel = env->minimap.addr + (y * env->minimap.line_len + x * (env->minimap.bpp
-				/ 8));
-	*(int *)pixel = color;
-}
-
-void	draw_minimap(t_env *env, int y, int x, int color)
-{
-	int i = 0;
-	int j = 0;
-	
-	while (i < env->delta_minim)
-	{
-		j = 0;
-		while (j < env->delta_minim)
-		{
-			my_mlx_pixel_put_minimap(env, y + i, x + j, color);
-			j++;
-		}
-		i++;
-	}
 }
