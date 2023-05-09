@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:22:01 by adcarnec          #+#    #+#             */
-/*   Updated: 2023/05/08 17:26:04 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/09 11:21:15 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@
 # define WIDTH (1940)
 # define HEIGHT (1280)
 
+# define TEXT_WIDTH (128)
+# define TEXT_HEIGHT (128)
+
 typedef struct s_img
 {
 	int					line_len;
@@ -52,6 +55,8 @@ struct					s_env
 	void				*mlx;
 	void				*mlx_win;
 	t_img				img[5];
+	t_img				minimap;
+	int					m_fact;
 
 	int					map_w;
 	int					map_h;
@@ -93,13 +98,13 @@ struct					s_env
 	int					color;
 	int					draw_start;
 	int					draw_end;
-	double				wall_height;
+	double				wall_width;
 	double				move_speed;
 	double				cam_speed;
 	int					texture_img;
 	int					line_height;
-	double				incr;
-	double				tex_pos;
+	double				text_incr_y;
+	double				tex_pos_y;
 	int					tex_x;
 	int					tex_y;
 };
@@ -109,11 +114,9 @@ void					ft_free(t_env *env);
 
 /* RAYCASTING */
 
-void					calc_rc(t_env *env, int x);
 int						raycasting(t_env *env);
 int						render(t_env *env);
-int						close_game(t_env *env);
-void					graphic_error(t_env *env, char *message);
+int						close_management(t_env *env);
 
 /* DRAW.C */
 
@@ -122,6 +125,8 @@ void					draw_column_slice(t_env *env, int x);
 
 int						key_hook(int key, t_env *env);
 int						mouse_hook(int x, int y, t_env *env);
-void					ft_init_texture(t_env *env);
+void					draw_minimap(t_env *env, int x, int y, int color);
+
+void					minimaping(t_env *env);
 
 #endif

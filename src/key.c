@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 09:16:37 by jde-la-f          #+#    #+#             */
-/*   Updated: 2023/05/08 17:09:31 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/09 11:12:12 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	rotate(t_env *env, double cam_speed)
 int	key_hook(int key, t_env *env)
 {
 	if (key == KEY_ESC)
-		close_game(env);
+		close_management(env);
 	else if (key == KEY_W)
 		move(env, env->dir_x * env->move_speed, env->dir_y * env->move_speed,
 			1);

@@ -6,7 +6,7 @@
 #    By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/29 12:35:36 by adcarnec          #+#    #+#              #
-#    Updated: 2023/05/05 09:21:02 by jde-la-f         ###   ########.fr        #
+#    Updated: 2023/05/09 11:19:44 by jde-la-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ SRC			=	./src/parse/ft_init.c ./src/parse/ft_parse.c ./src/parse/ft_checkmap.c\
 				./src/parse/ft_checkwall.c ./src/utils/ft_trimstr.c ./src/parse/ft_checkelem.c\
 				./src/utils/ft_str.c ./src/utils/ft_tab.c ./src/utils/ft_split.c \
 				./src/free/ft_free.c ./src/main.c ./src/raycasting/draw.c \
-				./src/raycasting/init_rc.c ./src/utils/ft_putstr_fd.c ./src/key.c
+				./src/raycasting/init_rc.c ./src/utils/ft_putstr_fd.c ./src/key.c \
+				./src/raycasting/minimap.c
 OBJ			=	$(SRC:.c=.o)
 INC_PATH	=	./inc/
 
