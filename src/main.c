@@ -6,7 +6,7 @@
 /*   By: jde-la-f <jde-la-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:17:23 by adcarnec          #+#    #+#             */
-/*   Updated: 2023/05/09 11:13:03 by jde-la-f         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:19:48 by jde-la-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int	close_management(t_env *env)
 	int	i;
 
 	i = -1;
-	/*if (message)
-		ft_putstr_fd(message, 2);*/
 	while (++i < 5)
 	{
 		if (env->img[0].mlx_img)
@@ -36,6 +34,30 @@ int	close_management(t_env *env)
 	exit(0);
 }
 
+int	error_management(t_env *env, char *msg)
+{
+	int	i;
+
+	i = -1;
+	if (msg)
+		ft_putstr_fd(msg, 2);
+	while (++i < 5)
+	{
+		if (env->img[0].mlx_img)
+			mlx_destroy_image(env->mlx, env->img[i].mlx_img);
+	}
+	if (env->minimap.mlx_img)
+		mlx_destroy_image(env->mlx, env->minimap.mlx_img);
+	if (env->mlx_win)
+		mlx_destroy_window(env->mlx, env->mlx_win);
+	if (env->mlx)
+		mlx_destroy_display(env->mlx);
+	free(env->mlx);
+	if (env->map)
+		ft_freetab(env->map);
+	exit(1);
+}
+
 void	ft_init_game(t_env *env)
 {
 	env->move_speed = 0.09;
@@ -46,12 +68,10 @@ void	ft_init_game(t_env *env)
 	env->img[4].path = "img/SP_HOT1.xpm";
 	env->mlx = mlx_init();
 	if (!env->mlx)
-		//close_management(env, "Error : Initialisation of display has failed\n");
-		close_management(env);
+		error_management(env, "Error\nInitialisation of display has failed\n");
 	env->mlx_win = mlx_new_window(env->mlx, WIDTH, HEIGHT, "cub3d");
 	if (!env->mlx_win)
-		//close_management(env, "Error : Initialisation of window has failed\n");
-		close_management(env);
+		error_management(env, "Error\nInitialisation of window has failed\n");
 	env->minimap.mlx_img = mlx_new_image(env->mlx, WIDTH / 7, HEIGHT / 7);
 	env->minimap.addr = mlx_get_data_addr(env->minimap.mlx_img,
 			&env->minimap.bpp, &env->minimap.line_len, &env->minimap.endian);
@@ -72,8 +92,7 @@ void	launch_game(t_env *env)
 					env->img[i].path, &env->img[i].width, &env->img[i].height);
 		}
 		if (!env->img[i].mlx_img || !env->minimap.mlx_img)
-			//close_management(env, "Error : image creation failed\n");
-			close_management(env);
+			error_management(env, "Error\nimage creation failed\n");
 		env->img[i].addr = mlx_get_data_addr(env->img[i].mlx_img,
 				&env->img[i].bpp, &env->img[i].line_len, &env->img[i].endian);
 		i++;
